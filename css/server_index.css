@@ -1,0 +1,2683 @@
+/*font - families */
+/*@font-face {
+    font-family: "Open Sans", sans-serif;
+	src: url("../fonts/Avenir_Light.otf");
+	font-display: swap;
+}*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400');
+
+@media (max-width: 780px) {
+.main_bar_mobile {
+	display: none;
+}
+
+#editor_container {
+	width: 1300px;
+	height: 630px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.main_bar {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width: 1300px;
+	height: 650px;
+}
+
+#main_bar_title {
+	margin-top: 200px;
+	font-family: "Open Sans", sans-serif;
+	font-size: 34px;
+	font-weight: 100;
+	display: block;
+	text-align: center;
+}
+
+#main_bar_text {
+	font-family: "Open Sans", sans-serif;
+	font-size: 20px;
+	font-weight: 100;
+	display: block;
+	text-align: center;	
+}
+
+#main_bar_end {
+	margin-top: 100px;
+	font-family: "Open Sans", sans-serif;
+	font-size: 16px;
+	font-weight: 100;
+	display: block;
+	text-align: center;	
+}
+
+/*input menu*/
+
+#file-input {
+	display: none;
+}
+
+#myinput {
+	/*position: absolute;*/
+	height: 140px;
+	top: 0px;
+	height: 35px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+.input {
+	width: 80%;
+	height: 100%; 
+	padding: 1px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+.d-flex{
+	/*float: left;*/
+	width: 15%;
+	height: 100%; 
+	padding: 1px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+.select {
+	width: 120px;
+	padding: 4px;
+	clear: both;
+}
+
+#clickme {
+	position: absolute;
+    left: 6.25%;
+}
+
+#layer-height {
+	position: absolute;
+    left: 6.25%;
+    top: 200px;
+}
+
+#color {
+	position: absolute;
+	top: 200px;
+	left: 37.5%;
+}
+
+#support {
+	position: absolute;
+    top: 200px;
+    left: 68.75%;
+}
+
+#support {
+	text-decoration: none;
+	text-align: center
+}
+
+select#support {
+	margin-right: 10px;
+	font-size: 13px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#text {
+	top: 15px;
+	position: relative;
+}
+
+#output {
+	position: relative;
+	padding-left: 15px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#price {
+	position: relative;
+	padding-left: 15px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+/*checkoutbutton*/
+#wrapper{
+	height: 800px;
+	width: 1300px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#checkout-outer {
+	position: absolute;
+	margin-top: 1550px;
+	height: auto;
+	padding: 10px 0;
+	width: 100%;
+}
+
+#checkout-outer .btn{
+	width: 100%;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 2; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Header */
+.modal-header {
+	padding: 15px 15px;
+	border-radius: 8px 8px 0 0;
+	background-color: #6491E9;
+	color: #0039a9;
+}
+.modal-header h2{
+	font-size: 15px;
+	margin: 0;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+  
+/* Modal Body */
+.modal-body {
+	padding: 15px;
+	height: auto;
+
+}
+.form-row {
+	border: 10px;
+}
+  
+/* Modal Footer */
+.modal-footer {
+	padding: 13px 15px;
+	border-radius: 0 0 8px 8px;
+	background-color: #6491E9;
+	color: #0039a9;
+}
+.modal-footer h3{
+	font-size: 12px;
+	margin: 0;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+  
+/* Modal Content */
+.modal-content {
+	position: relative;
+	background-color: #fff;
+	border-radius: 8px;
+	margin: 20px auto;
+	padding: 0;
+	border: 1px solid #888;
+	max-width: 620px;
+	width: 90%;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
+
+.amount span, .form-row input, .form-row label {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#amount {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#order_ID {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#print_color {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+  
+/* Add Animation */
+@keyframes animatetop {
+	from {top: -300px; opacity: 0}
+	to {top: 0; opacity: 1}
+}
+  
+/* The Close Button */
+.close {
+	color: #0039a9;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	margin-top: -7px;
+}
+  
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid #ccc;
+}
+
+button {
+	position: relative;
+}
+
+textarea {
+	tab-size: 4;
+	white-space: pre;
+	word-wrap: normal;
+}
+
+	textarea.success {
+		border-color: #8b8 !important;
+	}
+
+	textarea.fail {
+		border-color: #f00 !important;
+		background-color: rgba(255,0,0,0.05);
+	}
+
+textarea, input { outline: none; } /* osx */
+
+.Panel {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+	/* No support for these yet */
+	-o-user-select: none;
+	user-select: none;
+}
+
+.TabbedPanel {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+	/* No support for these yet */
+	-o-user-select: none;
+	user-select: none;
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 15px;
+}
+
+.TabbedPanel .TabbedPanel{
+	padding: 0;
+}
+
+#sidebar select{
+	background-color: transparent !important;
+}
+
+input[type="color"]{
+	height: 25px !important;
+}
+
+#sidebar .Row{
+	padding: 8px;
+	border-radius: 4px;
+	background-color: #fff;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.TabbedPanel .Tabs {
+	position: relative;
+	display: block;
+	width: 100%;
+	text-align: center;
+	background: #6491E9;
+	border-radius: 6px 6px 0 0;
+}
+
+.TabbedPanel .Tabs .Tab {
+	padding: 10px;
+	color: #0039a9 !important;
+	font-weight: bold;
+	vertical-align: middle;
+	text-transform: uppercase;
+}
+
+.TabbedPanel .Tabs .Panels {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+
+/* outliner */
+
+#outliner .option {
+
+	border: 1px solid transparent;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#outliner .option.drag {
+
+	border: 1px dashed #999;
+
+}
+
+#outliner .option.dragTop {
+
+	border-top: 1px dashed #999;
+
+}
+
+#outliner .option.dragBottom {
+
+	border-bottom: 1px dashed #999;
+
+}
+
+#outliner .type {
+	position:relative;
+	top:-2px;
+	padding: 0 2px;
+	color: #ddd;
+}
+
+#outliner .type:after {
+	content: '■';
+}
+
+#outliner .Scene {
+	color: #ccccff;
+}
+
+#outliner .Object3D {
+	color: #aaaaee;
+}
+
+#outliner .Mesh {
+	color: #8888ee;
+}
+
+#outliner .Line {
+	color: #88ee88;
+}
+
+#outliner .LineSegments {
+	color: #88ee88;
+}
+
+#outliner .Points {
+	color: #ee8888;
+}
+
+/* */
+
+#outliner .PointLight {
+	color: #dddd00;
+}
+
+/* */
+
+#outliner .Geometry {
+	color: #88ff88;
+}
+
+#outliner .BoxGeometry {
+	color: #bbeebb;
+}
+
+#outliner .TorusGeometry {
+	color: #aaeeaa;
+}
+
+/* */
+
+#outliner .Material {
+	color: #ff8888;
+}
+
+#outliner .MeshPhongMaterial {
+	color: #ffaa88;
+}
+
+/* */
+
+#outliner .Script:after {
+	content: '{...}' /* ❮/❯ */
+}
+
+/*  */
+
+button {
+	color: #555;
+	background-color: #ddd;
+	border: 0px;
+	padding: 5px 8px;
+	text-transform: uppercase;
+	cursor: pointer;
+	outline: none;
+}
+
+	button:hover {
+		background-color: #fff;
+	}
+
+	button.selected {
+		background-color: #fff;
+	}
+
+input, textarea {
+	border: 1px solid transparent;
+	color: #444;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+input.Number {
+	color: #08f!important;
+	font-size: 12px;
+	border: 0px;
+	padding: 2px;
+	cursor: col-resize;
+}
+
+select {
+
+	-webkit-rtl-ordering: visual;
+	-webkit-appearance: none;
+	-webkit-writing-mode: vertical-lr;
+	display: block;
+	color: #666;
+	background-color: #ddd;
+	border: 0px;
+	text-transform: uppercase;
+	cursor: pointer;
+	outline: none;
+}
+
+	select:hover {
+		background-color: #fff;
+	}
+
+/* UI */
+
+#viewport {
+    position: absolute;
+	top: 270px;
+	height: 630px;
+	width: 90%;
+	left: 5%;
+	bottom: 0;
+}
+
+	#viewport #info {
+		text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+		pointer-events: none;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+	}
+
+#sidebar {
+	position: absolute;
+	top: 1050px;
+	bottom: 0;
+	height: 590px;
+	width: 95%;
+	background: #f6f6f6;
+	overflow: auto;
+	border-radius: 0 0 8px 8px;
+}
+
+	#sidebar * {
+		vertical-align: middle;
+	}
+
+	#sidebar .Panel {
+		color: #888;
+		padding: 0px !important;
+		border-top: 1px solid #ccc;
+	}
+
+	#sidebar .Panel.collapsed {
+		margin-bottom: 0;
+	}
+
+	#sidebar .Row {
+		min-height: 20px;
+		margin-bottom: 10px;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+	}
+
+#tabs {
+	background-color: #ddd;
+	border-top: 1px solid #ccc;
+}
+
+	#tabs span {
+		color: #aaa;
+		border-right: 1px solid #ccc;
+		padding: 10px;
+	}
+
+	#tabs span.selected {
+		color: #888;
+		background-color: #eee;
+	}
+
+#toolbar {
+	position: absolute;
+	right: 555px;
+	top: 600px;/*calc(50% - 290px); /* ( ( 100% - 300px ) / 2.0 ) - 140px */
+	bottom: 0px;
+	width: 238px;
+	height: 32px;
+	background: #eee;
+	color: #333;
+}
+
+	#toolbar * {
+		vertical-align: middle;
+	}
+
+	#toolbar .Panel {
+		padding: 4px;
+		color: #888;
+	}
+
+	#toolbar button {
+		margin-right: 6px;
+		line-height: 14px;
+		height: 24px;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+	}
+
+.Outliner {
+	color: #444;
+	background-color: #fff;
+	padding: 0;
+	width: 100%;
+	height: 140px;
+	font-size: 12px;
+	cursor: default;
+	overflow: auto;
+	outline: none !important;
+}
+
+	.Outliner .option {
+		padding: 4px;
+		color: #666;
+		white-space: nowrap;
+	}
+
+	.Outliner .option:hover {
+		background-color: rgba(0,0,0,0.02);
+	}
+
+	.Outliner .option.active {
+		background-color: rgba(0,0,0,0.04);
+	}
+
+
+.TabbedPanel .Tabs {
+	/*background-color: #ddd;*/
+	/*border-top: 1px solid #ccc;*/
+}
+
+	.TabbedPanel .Tab {
+		color: #aaa;
+		/*border-right: 1px solid #ccc;*/
+	}
+
+	.TabbedPanel .Tab.selected {
+		color: #888;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+		/*background-color: #eee;*/
+	}
+
+.Listbox {
+	color: #444;
+	background-color: #fff;
+}
+
+.Panel {
+	color: #888;
+}
+
+#sidebar input, #sidebar textarea{
+	border-color: #f6f6f6 !important;
+	padding: 5px;
+}
+
+#sidebar .Panel > .Select{
+	position: relative !important;
+	width: 100%;
+	right: 0 !important;
+	padding: 8px !important;
+	margin-bottom: 10px;
+	font-size: 14px !important;
+	background-color: #fff !important;
+}
+
+.outer_flow{
+	width: 100%;
+	display: block;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.page-title{
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	color: #3d3d3d;
+	margin-bottom: 40px;
+	position: relative;
+	top: -20px;
+}
+.page-title h2{
+	margin: 0;
+	font-size: 1.2em;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}	
+.content-row{
+	width: 100%;
+	padding: 0 10px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+}
+.content-row > div{
+	padding: 0 15px;
+}
+.content-col-7{
+	width: 70%;
+}
+.content-col-5{
+	width: 30%;
+}
+.proceed_bar_box{
+	background: #f6f6f6;
+	border-radius: 5px;
+	padding: 20px;
+}
+.mr-10{
+	margin-right: 10px;
+}
+
+#payment-form{
+	max-width: 300px;
+	margin: 20px auto;
+}
+
+.amount{
+	border-top: 1px #d0d0d0 solid;
+	border-bottom: 1px #d0d0d0 solid;
+	margin-bottom: 15px;
+	padding: 15px 10px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: space-between;
+}
+
+#payment-form .form-row{
+	position: relative;
+	margin-bottom: 8px;
+}
+#payment-form input{
+	height: 40px;
+	border-radius: 5px;
+	border: 1px #e3e3e3 solid;
+	font-size: 15px;
+	color: #000;
+	width: 100%;
+	padding: 0 15px;
+}
+#ideal-bank-element{
+	border-radius: 5px;
+	border: 1px #e3e3e3 solid;
+	font-size: 15px;
+}
+label[for="ideal-bank-element"]{
+	position: absolute;
+    right: 32px;
+    top: 14px;
+    font-size: 12px;
+    color: #555;
+}
+
+#payment-form .btn{
+	width: 100%;
+}
+.btn{
+	height: 45px;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 0.5em;
+	border: none;
+	position: relative;
+}
+.btn-red{
+	background: #0039a9 !important;
+}
+
+.btn-arrow{
+	padding-right: 45px;
+}
+.btn-arrow span{
+	position: absolute;
+    right: 0;
+    top: 0;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 11px;
+    background: #0039a9;
+	border-radius: 0 5px 5px 0;
+}
+.btn-arrow span img{
+	display: inline-block;
+    margin-top: 12px;
+}
+
+.input-text-value{
+	position: absolute;
+	top: 990px;
+	width: 100%;
+	height: 680px;
+	background: #f6f6f6;
+	line-height: 26px;
+	border-radius: 8px 8px 0 0;
+}
+.input-text-value p{
+	margin: 0;
+}
+#import{
+	position: absolute;
+	margin-top: 755px;
+	width: 100%;
+	z-index: 1;
+	text-align: center;
+}
+#import img{
+	max-width: 300px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	cursor: pointer;
+}
+#myinput{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	margin-top: 40px;
+}
+#myinput input, #myinput select{
+	font-size: 0.65em;
+	width: 25%;
+	height: 35px;
+	padding: 0 10px;
+	border-radius: 5px;
+	border: 1px #e3e3e3 solid;
+	background: #fff;
+	color: #888;
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+#myinput .btn{
+	position: absolute;
+	width: 35%;
+	height: 35px;
+	white-space: nowrap;
+	padding: 0 15px;
+}
+#clear {
+	width: 100%;
+}
+#myinput .input:first-child{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+}
+.d-flex{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+}
+.btn-outline-black, .btn-outline-red{
+	width: 100%;
+	background-color: #fff;
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+.btn-outline-red{
+	border: 1px #0039a9 solid;
+	color: #0039a9;
+}
+.btn-outline-black{
+	width: 20%;
+	position: absolute;
+	left: 59%;
+	border: 1px #232323 solid;
+	color: #232323;
+}
+.btn-outline-red:hover{
+	background-color: #0039a9;
+	color: #fff;
+}
+.btn-outline-black:hover{
+	background-color: #232323;
+	color: #fff;
+}
+.footer_panel{
+	margin-top: 60px;
+}
+}
+
+@media (min-width: 780px) and (max-width: 1270px) {
+.main_bar_mobile {
+	display: none;
+}
+
+#editor_container {
+	width: 1300px;
+	height: 630px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.main_bar {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width: 1300px;
+	height: 650px;
+}
+
+#main_bar_title {
+	margin-top: 200px;
+	font-family: "Open Sans", sans-serif;
+	font-size: 34px;
+	font-weight: 100;
+	display: block;
+	text-align: center;
+}
+
+#main_bar_text {
+	font-family: "Open Sans", sans-serif;
+	font-size: 20px;
+	font-weight: 100;
+	display: block;
+	text-align: center;	
+}
+
+#main_bar_end {
+	margin-top: 100px;
+	font-family: "Open Sans", sans-serif;
+	font-size: 16px;
+	font-weight: 100;
+	display: block;
+	text-align: center;	
+}
+
+/*input menu*/
+
+#file-input {
+	display: none;
+}
+
+#myinput {
+	/*position: absolute;*/
+	top: 0px;
+	height: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+.input {
+	/*float: left;*/
+	width: 80%;
+	height: 100%; 
+	padding: 1px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+.d-flex{
+	/*float: left;*/
+	width: 15%;
+	height: 100%; 
+	padding: 1px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+.select {
+	/*float: left;*/
+	width: 120px;
+	padding: 4px;
+}
+
+#support {
+	text-decoration: none;
+	text-align: center
+}
+
+select#support {
+	margin-right: 10px;
+	font-size: 13px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#text {
+	top: 15px;
+	position: relative;
+}
+
+#output {
+	position: relative;
+	padding-left: 15px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#price {
+	position: relative;
+	padding-left: 15px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+/*checkoutbutton*/
+#wrapper{
+	height: 800px;
+	width: 1300px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#checkout-outer {
+	position: absolute;
+	margin-top: 1500px;
+	height: auto;
+	padding: 10px 0;
+	width: 100%;
+}
+
+#checkout-outer .btn{
+	width: 100%;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 2; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Header */
+.modal-header {
+	padding: 15px 15px;
+	border-radius: 8px 8px 0 0;
+	background-color: #6491E9;
+	color: #0039a9;
+}
+.modal-header h2{
+	font-size: 15px;
+	margin: 0;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+  
+/* Modal Body */
+.modal-body {
+	padding: 15px;
+	height: auto;
+
+}
+.form-row {
+	border: 10px;
+}
+  
+/* Modal Footer */
+.modal-footer {
+	padding: 13px 15px;
+	border-radius: 0 0 8px 8px;
+	background-color: #6491E9;
+	color: #0039a9;
+}
+.modal-footer h3{
+	font-size: 12px;
+	margin: 0;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+  
+/* Modal Content */
+.modal-content {
+	position: relative;
+	background-color: #fff;
+	border-radius: 8px;
+	margin: 20px auto;
+	padding: 0;
+	border: 1px solid #888;
+	max-width: 620px;
+	width: 90%;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
+
+.amount span, .form-row input, .form-row label {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#amount {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#order_ID {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#print_color {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+  
+/* Add Animation */
+@keyframes animatetop {
+	from {top: -300px; opacity: 0}
+	to {top: 0; opacity: 1}
+}
+  
+/* The Close Button */
+.close {
+	color: #0039a9;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	margin-top: -7px;
+}
+  
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid #ccc;
+}
+
+button {
+	position: relative;
+}
+
+textarea {
+	tab-size: 4;
+	white-space: pre;
+	word-wrap: normal;
+}
+
+	textarea.success {
+		border-color: #8b8 !important;
+	}
+
+	textarea.fail {
+		border-color: #f00 !important;
+		background-color: rgba(255,0,0,0.05);
+	}
+
+textarea, input { outline: none; } /* osx */
+
+.Panel {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+	/* No support for these yet */
+	-o-user-select: none;
+	user-select: none;
+}
+
+.TabbedPanel {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+	/* No support for these yet */
+	-o-user-select: none;
+	user-select: none;
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 15px;
+}
+
+.TabbedPanel .TabbedPanel{
+	padding: 0;
+}
+
+#sidebar select{
+	background-color: transparent !important;
+}
+
+input[type="color"]{
+	height: 25px !important;
+}
+
+#sidebar .Row{
+	padding: 8px;
+	border-radius: 4px;
+	background-color: #fff;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.TabbedPanel .Tabs {
+	position: relative;
+	display: block;
+	width: 100%;
+	text-align: center;
+	background: #6491E9;
+	border-radius: 6px 6px 0 0;
+}
+
+.TabbedPanel .Tabs .Tab {
+	padding: 10px;
+	color: #0039a9 !important;
+	font-weight: bold;
+	vertical-align: middle;
+	text-transform: uppercase;
+}
+
+.TabbedPanel .Tabs .Panels {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+
+/* outliner */
+
+#outliner .option {
+
+	border: 1px solid transparent;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#outliner .option.drag {
+
+	border: 1px dashed #999;
+
+}
+
+#outliner .option.dragTop {
+
+	border-top: 1px dashed #999;
+
+}
+
+#outliner .option.dragBottom {
+
+	border-bottom: 1px dashed #999;
+
+}
+
+#outliner .type {
+	position:relative;
+	top:-2px;
+	padding: 0 2px;
+	color: #ddd;
+}
+
+#outliner .type:after {
+	content: '■';
+}
+
+#outliner .Scene {
+	color: #ccccff;
+}
+
+#outliner .Object3D {
+	color: #aaaaee;
+}
+
+#outliner .Mesh {
+	color: #8888ee;
+}
+
+#outliner .Line {
+	color: #88ee88;
+}
+
+#outliner .LineSegments {
+	color: #88ee88;
+}
+
+#outliner .Points {
+	color: #ee8888;
+}
+
+/* */
+
+#outliner .PointLight {
+	color: #dddd00;
+}
+
+/* */
+
+#outliner .Geometry {
+	color: #88ff88;
+}
+
+#outliner .BoxGeometry {
+	color: #bbeebb;
+}
+
+#outliner .TorusGeometry {
+	color: #aaeeaa;
+}
+
+/* */
+
+#outliner .Material {
+	color: #ff8888;
+}
+
+#outliner .MeshPhongMaterial {
+	color: #ffaa88;
+}
+
+/* */
+
+#outliner .Script:after {
+	content: '{...}' /* ❮/❯ */
+}
+
+/*  */
+
+button {
+	color: #555;
+	background-color: #ddd;
+	border: 0px;
+	padding: 5px 8px;
+	text-transform: uppercase;
+	cursor: pointer;
+	outline: none;
+}
+
+	button:hover {
+		background-color: #fff;
+	}
+
+	button.selected {
+		background-color: #fff;
+	}
+
+input, textarea {
+	border: 1px solid transparent;
+	color: #444;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+input.Number {
+	color: #08f!important;
+	font-size: 12px;
+	border: 0px;
+	padding: 2px;
+	cursor: col-resize;
+}
+
+select {
+	color: #666;
+	background-color: #ddd;
+	border: 0px;
+	text-transform: uppercase;
+	cursor: pointer;
+	outline: none;
+}
+
+	select:hover {
+		background-color: #fff;
+	}
+
+/* UI */
+
+#viewport {
+    position: absolute;
+	top: 220px;
+	height: 630px;
+	width: 90%;
+	left: 5%;
+	bottom: 0;
+}
+
+	#viewport #info {
+		text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+		pointer-events: none;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+	}
+
+#sidebar {
+	position: absolute;
+	top: 1000px;
+	bottom: 0;
+	height: 590px;
+	width: 95%;
+	background: #f6f6f6;
+	overflow: auto;
+	border-radius: 0 0 8px 8px;
+}
+
+	#sidebar * {
+		vertical-align: middle;
+	}
+
+	#sidebar .Panel {
+		color: #888;
+		padding: 0px !important;
+		border-top: 1px solid #ccc;
+	}
+
+	#sidebar .Panel.collapsed {
+		margin-bottom: 0;
+	}
+
+	#sidebar .Row {
+		min-height: 20px;
+		margin-bottom: 10px;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+	}
+
+#tabs {
+	background-color: #ddd;
+	border-top: 1px solid #ccc;
+}
+
+	#tabs span {
+		color: #aaa;
+		border-right: 1px solid #ccc;
+		padding: 10px;
+	}
+
+	#tabs span.selected {
+		color: #888;
+		background-color: #eee;
+	}
+
+#toolbar {
+	position: absolute;
+	right: 555px;
+	top: 600px;/*calc(50% - 290px); /* ( ( 100% - 300px ) / 2.0 ) - 140px */
+	bottom: 0px;
+	width: 238px;
+	height: 32px;
+	background: #eee;
+	color: #333;
+}
+
+	#toolbar * {
+		vertical-align: middle;
+	}
+
+	#toolbar .Panel {
+		padding: 4px;
+		color: #888;
+	}
+
+	#toolbar button {
+		margin-right: 6px;
+		line-height: 14px;
+		height: 24px;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+	}
+
+.Outliner {
+	color: #444;
+	background-color: #fff;
+	padding: 0;
+	width: 100%;
+	height: 140px;
+	font-size: 12px;
+	cursor: default;
+	overflow: auto;
+	outline: none !important;
+}
+
+	.Outliner .option {
+		padding: 4px;
+		color: #666;
+		white-space: nowrap;
+	}
+
+	.Outliner .option:hover {
+		background-color: rgba(0,0,0,0.02);
+	}
+
+	.Outliner .option.active {
+		background-color: rgba(0,0,0,0.04);
+	}
+
+
+.TabbedPanel .Tabs {
+	/*background-color: #ddd;*/
+	/*border-top: 1px solid #ccc;*/
+}
+
+	.TabbedPanel .Tab {
+		color: #aaa;
+		/*border-right: 1px solid #ccc;*/
+	}
+
+	.TabbedPanel .Tab.selected {
+		color: #888;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+		/*background-color: #eee;*/
+	}
+
+.Listbox {
+	color: #444;
+	background-color: #fff;
+}
+
+.Panel {
+	color: #888;
+}
+
+#sidebar input, #sidebar textarea{
+	border-color: #f6f6f6 !important;
+	padding: 5px;
+}
+
+#sidebar .Panel > .Select{
+	position: relative !important;
+	width: 100%;
+	right: 0 !important;
+	padding: 8px !important;
+	margin-bottom: 10px;
+	font-size: 14px !important;
+	background-color: #fff !important;
+}
+
+.outer_flow{
+	width: 100%;
+	display: block;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.page-title{
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	color: #3d3d3d;
+	margin-bottom: 40px;
+	position: relative;
+	top: -20px;
+}
+.page-title h2{
+	margin: 0;
+	font-size: 34px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}	
+.content-row{
+	width: 100%;
+	padding: 0 10px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+}
+.content-row > div{
+	padding: 0 15px;
+}
+.content-col-7{
+	width: 70%;
+}
+.content-col-5{
+	width: 30%;
+}
+.proceed_bar_box{
+	background: #f6f6f6;
+	border-radius: 5px;
+	padding: 20px;
+}
+.mr-10{
+	margin-right: 10px;
+}
+
+#payment-form{
+	max-width: 300px;
+	margin: 20px auto;
+}
+
+.amount{
+	border-top: 1px #d0d0d0 solid;
+	border-bottom: 1px #d0d0d0 solid;
+	margin-bottom: 15px;
+	padding: 15px 10px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: space-between;
+}
+
+#payment-form .form-row{
+	position: relative;
+	margin-bottom: 8px;
+}
+#payment-form input{
+	height: 40px;
+	border-radius: 5px;
+	border: 1px #e3e3e3 solid;
+	font-size: 15px;
+	color: #000;
+	width: 100%;
+	padding: 0 15px;
+}
+#ideal-bank-element{
+	border-radius: 5px;
+	border: 1px #e3e3e3 solid;
+	font-size: 15px;
+}
+label[for="ideal-bank-element"]{
+	position: absolute;
+    right: 32px;
+    top: 14px;
+    font-size: 12px;
+    color: #555;
+}
+
+#payment-form .btn{
+	width: 100%;
+}
+.btn{
+	height: 45px;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 0.75em;
+	border: none;
+	position: relative;
+}
+.btn-red{
+	background: #0039a9 !important;
+}
+
+.btn-arrow{
+	padding-right: 45px;
+}
+.btn-arrow span{
+	position: absolute;
+    right: 0;
+    top: 0;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 11px;
+    background: #0039a9;
+	border-radius: 0 5px 5px 0;
+}
+.btn-arrow span img{
+	display: inline-block;
+    margin-top: 12px;
+}
+
+.input-text-value{
+	position: absolute;
+	top: 940px;
+	width: 100%;
+	height: 680px;
+	background: #f6f6f6;
+	line-height: 26px;
+	border-radius: 8px 8px 0 0;
+}
+.input-text-value p{
+	margin: 0;
+}
+#import{
+	position: absolute;
+	margin-top: 685px;
+	width: 100%;
+	z-index: 1;
+	text-align: center;
+}
+#import img{
+	max-width: 300px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	cursor: pointer;
+}
+#myinput{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	margin-top: 40px;
+}
+#myinput input, #myinput select{
+	width: 22%;
+	height: 35px;
+	padding: 0 10px;
+	border-radius: 5px;
+	border: 1px #e3e3e3 solid;
+	background: #fff;
+	color: #888;
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+#myinput .btn{
+	/*width: 35%; */
+	height: 35px;
+	white-space: nowrap;
+	padding: 0 15px;
+}
+
+#clickme {
+	width: 35%;
+}
+
+#clear {
+	width: 100%;
+}
+#myinput .input:first-child{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+}
+.d-flex{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+}
+.btn-outline-black, .btn-outline-red{
+	width: 100%;
+	background-color: #fff;
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+.btn-outline-red{
+	border: 1px #0039a9 solid;
+	color: #0039a9;
+}
+.btn-outline-black{
+	width: 100%;
+	border: 1px #232323 solid;
+	color: #232323;
+}
+.btn-outline-red:hover{
+	background-color: #0039a9;
+	color: #fff;
+}
+.btn-outline-black:hover{
+	background-color: #232323;
+	color: #fff;
+}
+.footer_panel{
+	margin-top: 60px;
+}
+}
+
+/* main bar */
+@media (min-width: 1270px) { 
+.main_bar_mobile {
+	display: none;
+}
+
+#editor_container {
+	width: 1300px;
+	height: 630px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.main_bar {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width: 1300px;
+	height: 650px;
+}
+
+#main_bar_title {
+	margin-top: 200px;
+	font-family: "Open Sans", sans-serif;
+	font-size: 34px;
+	font-weight: 100;
+	display: block;
+	text-align: center;
+}
+
+#main_bar_text {
+	font-family: "Open Sans", sans-serif;
+	font-size: 20px;
+	font-weight: 100;
+	display: block;
+	text-align: center;	
+}
+
+#main_bar_end {
+	margin-top: 100px;
+	font-family: "Open Sans", sans-serif;
+	font-size: 16px;
+	font-weight: 100;
+	display: block;
+	text-align: center;	
+}
+
+/*input menu*/
+
+#file-input {
+	display: none;
+}
+
+#myinput {
+	/*position: absolute;*/
+	top: 0px;
+	height: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1300px;
+}
+
+.input {
+	float: left;
+	width: auto;
+	height: 100%; 
+	padding: 1px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+.select {
+	float: left;
+	width: 120px;
+	padding: 4px;
+}
+
+select#support {
+	margin-right: 10px;
+	font-size: 13px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#text {
+	top: 15px;
+	position: relative;
+}
+
+#output {
+	position: relative;
+	padding-left: 15px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#price {
+	position: relative;
+	padding-left: 15px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+/*checkoutbutton*/
+#wrapper{
+	height: 800px;
+	width: 1300px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#checkout-outer {
+	position: absolute;
+	margin-top: 680px;
+	margin-left: 910px;
+	height: auto;
+	padding: 10px 0;
+	width: 350px;
+}
+
+#checkout-outer .btn{
+	width: 100%;
+}
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 2; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Header */
+.modal-header {
+	padding: 15px 15px;
+	border-radius: 8px 8px 0 0;
+	background-color: #6491E9;
+	color: #0039a9;
+}
+.modal-header h2{
+	font-size: 15px;
+	margin: 0;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+  
+/* Modal Body */
+.modal-body {
+	padding: 15px;
+	height: auto;
+
+}
+.form-row {
+	border: 10px;
+}
+  
+/* Modal Footer */
+.modal-footer {
+	padding: 13px 15px;
+	border-radius: 0 0 8px 8px;
+	background-color: #6491E9;
+	color: #0039a9;
+}
+.modal-footer h3{
+	font-size: 12px;
+	margin: 0;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+  
+/* Modal Content */
+.modal-content {
+	position: relative;
+	background-color: #fff;
+	border-radius: 8px;
+	margin: 20px auto;
+	padding: 0;
+	border: 1px solid #888;
+	max-width: 620px;
+	width: 90%;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
+
+.amount span, .form-row input, .form-row label {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#amount {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#order_ID {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#print_color {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+  
+/* Add Animation */
+@keyframes animatetop {
+	from {top: -300px; opacity: 0}
+	to {top: 0; opacity: 1}
+}
+  
+/* The Close Button */
+.close {
+	color: #0039a9;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	margin-top: -7px;
+}
+  
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid #ccc;
+}
+
+button {
+	position: relative;
+}
+
+textarea {
+	tab-size: 4;
+	white-space: pre;
+	word-wrap: normal;
+}
+
+	textarea.success {
+		border-color: #8b8 !important;
+	}
+
+	textarea.fail {
+		border-color: #f00 !important;
+		background-color: rgba(255,0,0,0.05);
+	}
+
+textarea, input { outline: none; } /* osx */
+
+.Panel {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+	/* No support for these yet */
+	-o-user-select: none;
+	user-select: none;
+}
+
+.TabbedPanel {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+
+	/* No support for these yet */
+	-o-user-select: none;
+	user-select: none;
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 15px;
+}
+
+.TabbedPanel .TabbedPanel{
+	padding: 0;
+}
+
+#sidebar select{
+	background-color: transparent !important;
+}
+
+input[type="color"]{
+	height: 25px !important;
+}
+
+#sidebar .Row{
+	padding: 8px;
+	border-radius: 4px;
+	background-color: #fff;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.TabbedPanel .Tabs {
+	position: relative;
+	display: block;
+	width: 100%;
+	text-align: center;
+	background: #6491E9;
+	border-radius: 6px 6px 0 0;
+}
+
+.TabbedPanel .Tabs .Tab {
+	padding: 10px;
+	color: #0039a9 !important;
+	font-weight: bold;
+	vertical-align: middle;
+	text-transform: uppercase;
+}
+
+.TabbedPanel .Tabs .Panels {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+
+/* outliner */
+
+#outliner .option {
+
+	border: 1px solid transparent;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+#outliner .option.drag {
+
+	border: 1px dashed #999;
+
+}
+
+#outliner .option.dragTop {
+
+	border-top: 1px dashed #999;
+
+}
+
+#outliner .option.dragBottom {
+
+	border-bottom: 1px dashed #999;
+
+}
+
+#outliner .type {
+	position:relative;
+	top:-2px;
+	padding: 0 2px;
+	color: #ddd;
+}
+
+#outliner .type:after {
+	content: '■';
+}
+
+#outliner .Scene {
+	color: #ccccff;
+}
+
+#outliner .Object3D {
+	color: #aaaaee;
+}
+
+#outliner .Mesh {
+	color: #8888ee;
+}
+
+#outliner .Line {
+	color: #88ee88;
+}
+
+#outliner .LineSegments {
+	color: #88ee88;
+}
+
+#outliner .Points {
+	color: #ee8888;
+}
+
+/* */
+
+#outliner .PointLight {
+	color: #dddd00;
+}
+
+/* */
+
+#outliner .Geometry {
+	color: #88ff88;
+}
+
+#outliner .BoxGeometry {
+	color: #bbeebb;
+}
+
+#outliner .TorusGeometry {
+	color: #aaeeaa;
+}
+
+/* */
+
+#outliner .Material {
+	color: #ff8888;
+}
+
+#outliner .MeshPhongMaterial {
+	color: #ffaa88;
+}
+
+/* */
+
+#outliner .Script:after {
+	content: '{...}' /* ❮/❯ */
+}
+
+/*  */
+
+button {
+	color: #555;
+	background-color: #ddd;
+	border: 0px;
+	padding: 5px 8px;
+	text-transform: uppercase;
+	cursor: pointer;
+	outline: none;
+}
+
+	button:hover {
+		background-color: #fff;
+	}
+
+	button.selected {
+		background-color: #fff;
+	}
+
+input, textarea {
+	border: 1px solid transparent;
+	color: #444;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}
+
+input.Number {
+	color: #08f!important;
+	font-size: 12px;
+	border: 0px;
+	padding: 2px;
+	cursor: col-resize;
+}
+
+select {
+	color: #666;
+	background-color: #ddd;
+	border: 0px;
+	text-transform: uppercase;
+	cursor: pointer;
+	outline: none;
+}
+
+	select:hover {
+		background-color: #fff;
+	}
+
+/* UI */
+
+#viewport {
+    position: absolute;
+	top: 220px;
+	height: 630px;
+	width: 900px;
+	bottom: 0;
+}
+
+	#viewport #info {
+		text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
+		pointer-events: none;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+	}
+
+#sidebar {
+	position: absolute;
+	margin-left: 925px;
+	top: 210px;
+	bottom: 0;
+	height: 590px;
+	width: 300px;
+	background: #f6f6f6;
+	overflow: auto;
+	border-radius: 0 0 8px 8px;
+}
+
+	#sidebar * {
+		vertical-align: middle;
+	}
+
+	#sidebar .Panel {
+		color: #888;
+		padding: 0px !important;
+		border-top: 1px solid #ccc;
+	}
+
+	#sidebar .Panel.collapsed {
+		margin-bottom: 0;
+	}
+
+	#sidebar .Row {
+		min-height: 20px;
+		margin-bottom: 10px;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+	}
+
+#tabs {
+	background-color: #ddd;
+	border-top: 1px solid #ccc;
+}
+
+	#tabs span {
+		color: #aaa;
+		border-right: 1px solid #ccc;
+		padding: 10px;
+	}
+
+	#tabs span.selected {
+		color: #888;
+		background-color: #eee;
+	}
+
+#toolbar {
+	position: absolute;
+	right: 555px;
+	top: 600px;/*calc(50% - 290px); /* ( ( 100% - 300px ) / 2.0 ) - 140px */
+	bottom: 0px;
+	width: 238px;
+	height: 32px;
+	background: #eee;
+	color: #333;
+}
+
+	#toolbar * {
+		vertical-align: middle;
+	}
+
+	#toolbar .Panel {
+		padding: 4px;
+		color: #888;
+	}
+
+	#toolbar button {
+		margin-right: 6px;
+		line-height: 14px;
+		height: 24px;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+	}
+
+.Outliner {
+	color: #444;
+	background-color: #fff;
+	padding: 0;
+	width: 100%;
+	height: 140px;
+	font-size: 12px;
+	cursor: default;
+	overflow: auto;
+	outline: none !important;
+}
+
+	.Outliner .option {
+		padding: 4px;
+		color: #666;
+		white-space: nowrap;
+	}
+
+	.Outliner .option:hover {
+		background-color: rgba(0,0,0,0.02);
+	}
+
+	.Outliner .option.active {
+		background-color: rgba(0,0,0,0.04);
+	}
+
+
+.TabbedPanel .Tabs {
+	/*background-color: #ddd;*/
+	/*border-top: 1px solid #ccc;*/
+}
+
+	.TabbedPanel .Tab {
+		color: #aaa;
+		/*border-right: 1px solid #ccc;*/
+	}
+
+	.TabbedPanel .Tab.selected {
+		color: #888;
+		font-family: "Open Sans", sans-serif;
+		font-weight: 100;
+		/*background-color: #eee;*/
+	}
+
+.Listbox {
+	color: #444;
+	background-color: #fff;
+}
+
+.Panel {
+	color: #888;
+}
+
+#sidebar input, #sidebar textarea{
+	border-color: #f6f6f6 !important;
+	padding: 5px;
+}
+
+#sidebar .Panel > .Select{
+	position: relative !important;
+	width: 100%;
+	right: 0 !important;
+	padding: 8px !important;
+	margin-bottom: 10px;
+	font-size: 14px !important;
+	background-color: #fff !important;
+}
+
+.outer_flow{
+	width: 1300px;
+	display: block;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.page-title{
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	color: #3d3d3d;
+	margin-bottom: 40px;
+	position: relative;
+	top: -20px;
+}
+.page-title h2{
+	margin: 0;
+	font-size: 34px;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 100;
+}	
+.content-row{
+	width: 100%;
+	padding: 0 10px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+}
+.content-row > div{
+	padding: 0 15px;
+}
+.content-col-7{
+	width: 70%;
+}
+.content-col-5{
+	width: 30%;
+}
+.proceed_bar_box{
+	background: #f6f6f6;
+	border-radius: 5px;
+	padding: 20px;
+}
+.mr-10{
+	margin-right: 10px;
+}
+
+#payment-form{
+	max-width: 300px;
+	margin: 20px auto;
+}
+
+.amount{
+	border-top: 1px #d0d0d0 solid;
+	border-bottom: 1px #d0d0d0 solid;
+	margin-bottom: 15px;
+	padding: 15px 10px;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: space-between;
+}
+
+#payment-form .form-row{
+	position: relative;
+	margin-bottom: 8px;
+}
+#payment-form input{
+	height: 40px;
+	border-radius: 5px;
+	border: 1px #e3e3e3 solid;
+	font-size: 15px;
+	color: #000;
+	width: 100%;
+	padding: 0 15px;
+}
+#ideal-bank-element{
+	border-radius: 5px;
+	border: 1px #e3e3e3 solid;
+	font-size: 15px;
+}
+label[for="ideal-bank-element"]{
+	position: absolute;
+    right: 32px;
+    top: 14px;
+    font-size: 12px;
+    color: #555;
+}
+
+#payment-form .btn{
+	width: 100%;
+}
+.btn{
+	height: 45px;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 15px;
+	border: none;
+	position: relative;
+}
+.btn-red{
+	background: #0039a9 !important;
+}
+
+.btn-arrow{
+	padding-right: 45px;
+}
+.btn-arrow span{
+	position: absolute;
+    right: 0;
+    top: 0;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 11px;
+    background: #0039a9;
+	border-radius: 0 5px 5px 0;
+}
+.btn-arrow span img{
+	display: inline-block;
+    margin-top: 12px;
+}
+
+.input-text-value{
+	position: absolute;
+	margin-left: 910px;
+	top: 130px;
+	width: 350px;
+	height: 680px;
+	background: #f6f6f6;
+	line-height: 26px;
+	border-radius: 8px 8px 0 0;
+}
+.input-text-value p{
+	margin: 0;
+}
+#import{
+	position: absolute;
+	margin-top: 685px;
+	width: 900px;
+	z-index: 1;
+	text-align: center;
+}
+#import img{
+	max-width: 300px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	cursor: pointer;
+}
+#myinput{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	margin-top: 40px;
+	padding: 0 15px;
+}
+#myinput input, #myinput select{
+	height: 35px;
+	padding: 0 10px;
+	border-radius: 5px;
+	border: 1px #e3e3e3 solid;
+	background: #fff;
+	color: #888;
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+#myinput .btn{
+	height: 35px;
+	white-space: nowrap;
+	padding: 0 15px;
+}
+#myinput .input:first-child{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+}
+.d-flex{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+}
+.btn-outline-black, .btn-outline-red{
+	background-color: #fff;
+	-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+.btn-outline-red{
+	border: 1px #0039a9 solid;
+	color: #0039a9;
+}
+.btn-outline-black{
+	border: 1px #232323 solid;
+	color: #232323;
+}
+.btn-outline-red:hover{
+	background-color: #0039a9;
+	color: #fff;
+}
+.btn-outline-black:hover{
+	background-color: #232323;
+	color: #fff;
+}
+.footer_panel{
+	margin-top: 60px;
+}
+}

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Execute Printing - Print To Order Page</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<script src="http://127.0.0.1:8000/node_modules/jquery/dist/jquery.js"></script>
+		<link rel="apple-touch-icon" sizes="57x57" href="http://127.0.0.1:8000/three/editor/images/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="http://127.0.0.1:8000/three/editor/images/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="http://127.0.0.1:8000/three/editor/images/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="http://127.0.0.1:8000/three/editor/images/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="http://127.0.0.1:8000/three/editor/images/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="http://127.0.0.1:8000/three/editor/images/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="http://127.0.0.1:8000/three/editor/images/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="http://127.0.0.1:8000/three/editor/images/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="http://127.0.0.1:8000/three/editor/images/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="http://127.0.0.1:8000/three/editor/images/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="http://127.0.0.1:8000/three/editor/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="http://127.0.0.1:8000/three/editor/images/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="http://127.0.0.1:8000/three/editor/images/favicon-16x16.png">
+		<link rel="manifest" href="manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+		<!-- WebXR Device API (For Chrome M76+), expires 10/16/2019 -->
+		<meta http-equiv="origin-trial" content="AtWCPo0cZgy0zJDSYftemy7eZvmcwR5qy/4osFkMkLZ0ar6OYyKfbu93pjpxiOVzcWNIVxgoWoK8YtxCXeFSqgIAAABTeyJvcmlnaW4iOiJodHRwczovL3RocmVlanMub3JnOjQ0MyIsImZlYXR1cmUiOiJXZWJYUkRldmljZU03NiIsImV4cGlyeSI6MTU3MTE4Mzk5OX0=">
+	</head>
+
+	<body ontouchstart="">
+
+		<!--this is the main menu-->
+		<div id="myinput">
+			<div class='input'>
+				<p id= 'text'>Drag and drop your stl file down below</p>
+				<p id= 'text2'>Make sure your object fits on the print grid</p>
+			</div>
+			<div class='input'>
+				<input id="clickme" type="button" value="Calculate Time Now" class="select">
+				<select name="options" id="layer-height" class="select">
+					<option value="0.1">0.1 mm</option>
+					<option value="0.2">0.2 mm</option>
+					<option value="0.3">0.3 mm</option>
+					<option value="0.4">0.4 mm</option>
+				</select>
+				<select name="options" id='color' class="select">
+					<option value= "zwart">Zwart</option>
+					<option value="wit">Wit</option>
+					<option value="oranje">Oranje</option>
+					<option value="groen">Groen</option>
+				</select>
+			</div>
+			<div class='input'>
+				<progress id="upload-progress" class="upload-progress"></progress>
+				<button id='clear'>clear all</button>
+			</div>
+			<div class='input'>
+				<p id='output'>Your printing time :</p>
+				<p id='price'>Price of your print :</p>
+			</div>
+		</div>
+
+		<!--checkout button-->
+		<div id="checkout">
+			<button id="checkout">Checkout here</button>
+		</div>
+
+		<!--Checkout modal screen-->
+		<div id="mycheckout" class="modal">
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close">&times;</span>
+					<h2>Execute Printing - Print To Order Checkout using Stripe</h2>
+				</div>
+				<div class="modal-body">
+					<form id="payment-form">
+						<div class="form-row">
+							<label for='amount'>
+								Amount:
+							</label>
+							<p id ='amount'></p>
+						</div>
+
+						<div class="form-row">
+							<label for="name">
+							Name
+							</label>
+							<input name="name">
+						</div>
+
+						<div class="form-row">
+							<label for="email">
+							Email
+							</label>
+							<input name='email'>
+						</div>
+
+						<div class="form-row">
+							<label for='adress'>
+							Street
+							</label>
+							<input name='adress'>
+						</div>
+						
+						<div class="form-row">
+							<label for="ideal-bank-element">
+							iDEAL Bank
+							</label>
+							<div id="ideal-bank-element">
+							<!-- A Stripe Element will be inserted here. -->
+							</div>
+						</div>
+						
+						<button>Submit Payment</button>
+						
+						<!-- Used to display form errors. -->
+						<div id="error-message" role="alert"></div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<h3>You will be redirected to authorize you payment</h3>
+				</div>
+			</div>  
+		</div>
+
+		<!--this is the footer menu-->
+		<div id='footer'>
+			<p id='footer_text'>Print to order - Execute Printing - build with Three.js</p>
+		</div>
+
+		<link rel="stylesheet" href="css/main.css">
+		<!--  include stripe checkout library -->
+		<script src="https://js.stripe.com/v3/"></script>
+
+		<script src="http://127.0.0.1:8000/three/build/three.js"></script>
+        
+        <script src="http://127.0.0.1:8000/three/examples/js/controls/TransformControls.js"></script>
+
+		<script src="http://127.0.0.1:8000/three/examples/js/libs/chevrotain.min.js"></script> 
+		<script src="http://127.0.0.1:8000/three/examples/js/libs/jszip.min.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/libs/inflate.min.js"></script> 
+
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/AMFLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/ColladaLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/DRACOLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/FBXLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/GLTFLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/deprecated/LegacyGLTFLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/KMZLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/MD2Loader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/OBJLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/MTLLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/PLYLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/STLLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/SVGLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/TGALoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/TDSLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/VRMLLoader.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/loaders/VTKLoader.js"></script>
+
+		<script src="http://127.0.0.1:8000/three/examples/js/exporters/ColladaExporter.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/exporters/GLTFExporter.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/exporters/OBJExporter.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/exporters/STLExporter.js"></script>
+
+		<script src="http://127.0.0.1:8000/three/examples/js/renderers/Projector.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/renderers/RaytracingRenderer.js"></script>
+		<script src="http://127.0.0.1:8000/three/examples/js/renderers/SVGRenderer.js"></script>
+
+		<link rel="stylesheet" href="http://127.0.0.1:8000/three/editor/js/libs/codemirror/codemirror.css">
+		<link rel="stylesheet" href="http://127.0.0.1:8000/three/editor/js/libs/codemirror/theme/monokai.css">
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/codemirror/codemirror.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/codemirror/mode/javascript.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/codemirror/mode/glsl.js"></script>
+
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/system.min.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/esprima.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/jsonlint.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/glslprep.min.js"></script>
+
+		<link rel="stylesheet" href="http://127.0.0.1:8000/three/editor/js/libs/codemirror/addon/dialog.css">
+		<link rel="stylesheet" href="http://127.0.0.1:8000/three/editor/js/libs/codemirror/addon/show-hint.css">
+		<link rel="stylesheet" href="http://127.0.0.1:8000/three/editor/js/libs/codemirror/addon/tern.css">
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/codemirror/addon/dialog.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/codemirror/addon/show-hint.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/codemirror/addon/tern.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/acorn/acorn.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/acorn/acorn_loose.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/acorn/walk.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/ternjs/polyfill.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/ternjs/signal.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/ternjs/tern.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/ternjs/def.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/ternjs/comment.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/ternjs/infer.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/ternjs/doc_comment.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/tern-threejs/threejs.js"></script>
+
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/signals.min.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/ui.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/ui.three.js"></script>
+
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/html2canvas.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/three.html.js"></script>
+
+		<script src="http://127.0.0.1:8000/three/editor/js/libs/app.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Player.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Script.js"></script>
+
+		<script src="http://127.0.0.1:8000/three/examples/js/vr/WebVR.js"></script>
+
+		<script src="http://127.0.0.1:8000/three/editor/js/EditorControls.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Storage.js"></script>
+
+		<script src="http://127.0.0.1:8000/three/editor/js/Editor.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Config.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/History.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Loader.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Menubar.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Menubar.File.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Scene.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Project.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Settings.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Settings.Shortcuts.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Settings.Viewport.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Properties.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Object.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.Geometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.BufferGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.Modifiers.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.BoxGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.CircleGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.CylinderGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.DodecahedronGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.ExtrudeGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.IcosahedronGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.OctahedronGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.PlaneGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.RingGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.SphereGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.ShapeGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.TetrahedronGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.TorusGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.TorusKnotGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.TubeGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/../examples/js/geometries/TeapotBufferGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.TeapotBufferGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Geometry.LatheGeometry.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Material.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Animation.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.Script.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Sidebar.History.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Strings.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Toolbar.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Viewport.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Viewport.Camera.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/Viewport.Info.js"></script>
+
+		<script src="http://127.0.0.1:8000/three/editor/js/Command.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/AddObjectCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/RemoveObjectCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/MoveObjectCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetPositionCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetRotationCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetScaleCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetValueCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetUuidCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetColorCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetGeometryCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetGeometryValueCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/MultiCmdsCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/AddScriptCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/RemoveScriptCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetScriptValueCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetMaterialCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetMaterialColorCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetMaterialMapCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetMaterialValueCommand.js"></script>
+		<script src="http://127.0.0.1:8000/three/editor/js/commands/SetMaterialVectorCommand.js"></script>
+        <script src="http://127.0.0.1:8000/three/editor/js/commands/SetSceneCommand.js"></script>
+        <!--these are the node_modules and STLloader-->
+        <script src="http://127.0.0.1:8000/node_modules/file-saver/src/FileSaver.js"></script>
+        <script src="http://127.0.0.1:8000/three/examples/js/loaders/STLLoader.js"></script>
+        <script src="http://127.0.0.1:8000/node_modules/three-stlexporter/STLExporter.js"></script>
+
+		<!-- script for editing and time calculation starts here -->
+		<script>
+			window.URL = window.URL || window.webkitURL;
+			window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
+
+			Number.prototype.format = function (){
+				return this.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+			};
+
+			//initiating the whole editor
+
+			var editor = new Editor();
+
+			var viewport = new Viewport( editor );
+			document.body.appendChild( viewport.dom );
+
+			var toolbar = new Toolbar( editor );
+			document.body.appendChild( toolbar.dom );
+
+			var script = new Script( editor );
+			document.body.appendChild( script.dom );
+
+			var player = new Player( editor );
+			document.body.appendChild( player.dom );
+
+			var sidebar = new Sidebar( editor );
+			document.body.appendChild( sidebar.dom );
+
+			editor.storage.init( function () {
+
+				editor.storage.get( function ( state ) {
+
+					if ( isLoadingFromHash ) return;
+
+					if ( state !== undefined ) {
+
+						editor.fromJSON( state );
+
+					}
+
+					var selected = editor.config.getKey( 'selected' );
+
+					if ( selected !== undefined ) {
+
+						editor.selectByUuid( selected );
+
+					}
+
+				} );
+
+				//timeout functions
+
+				var timeout;
+
+				function saveState( scene ) {
+
+					if ( editor.config.getKey( 'autosave' ) === false ) {
+
+						return;
+
+					}
+
+					clearTimeout( timeout );
+
+					timeout = setTimeout( function () {
+
+						editor.signals.savingStarted.dispatch();
+
+						timeout = setTimeout( function () {
+
+							editor.storage.set( editor.toJSON() );
+
+							editor.signals.savingFinished.dispatch();
+
+						}, 100 );
+
+					}, 1000 );
+
+				};
+
+				var signals = editor.signals;
+
+				signals.geometryChanged.add( saveState );
+				signals.objectAdded.add( saveState );
+				signals.objectChanged.add( saveState );
+				signals.objectRemoved.add( saveState );
+				signals.materialChanged.add( saveState );
+				signals.sceneBackgroundChanged.add( saveState );
+				signals.sceneFogChanged.add( saveState );
+				signals.sceneGraphChanged.add( saveState );
+				signals.scriptChanged.add( saveState );
+				signals.historyChanged.add( saveState );
+
+			} );
+
+			//functionalities
+
+			document.addEventListener( 'dragover', function ( event ) {
+
+				event.preventDefault();
+				event.dataTransfer.dropEffect = 'copy';
+
+			}, false );
+
+			document.addEventListener( 'drop', function ( event ) {
+
+				event.preventDefault();
+
+				editor.loader.loadFiles( event.dataTransfer.files );
+
+			}, false );
+
+			function onWindowResize( event ) {
+
+				editor.signals.windowResize.dispatch();
+
+			}
+
+			window.addEventListener( 'resize', onWindowResize, false );
+
+			onWindowResize();
+
+			//no clue what this is
+
+			var isLoadingFromHash = false;
+			var hash = window.location.hash;
+
+			if ( hash.substr( 1, 5 ) === 'file=' ) {
+
+				var file = hash.substr( 6 );
+
+				if ( confirm( 'Any unsaved data will be lost. Are you sure?' ) ) {
+
+					var loader = new THREE.FileLoader();
+					loader.crossOrigin = '';
+					loader.load( file, function ( text ) {
+
+						editor.clear();
+						editor.fromJSON( JSON.parse( text ) );
+
+					} );
+
+					isLoadingFromHash = true;
+
+				}
+
+			}
+
+			// ServiceWorker
+			if ( 'serviceWorker' in navigator ) {
+				try {
+					navigator.serviceWorker.register( 'sw.js' );
+				} catch ( error ) {
+				}
+			}
+
+			$('#clear').click(function () {
+				editor.clear();
+			}); 
+
+			//setting upload bar invisible
+			document.getElementById('upload-progress').style.visibility = 'hidden';
+
+			//calculating time function
+			$('#clickme').click(function () {
+				//deleting previous time
+				$('output').empty();
+				//setting upload bar
+				document.getElementById('upload-progress').style.visibility = 'visible';
+                //Selecting the layer-height and adding to FormData API
+				var d = new Date();
+  				var n = d.getTime();
+                var your_selected_value = $('#layer-height option:selected').val();
+				console.log(your_selected_value);
+				uploadProgress = document.getElementById('upload-progress');
+                //AJAX request of FormData
+                jQuery.ajax({
+                    url: 'http://localhost:8000/layer-height.php',
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({selected: your_selected_value,
+					time: n}),
+					processData: false,
+					//progress
+					/*xhr: function () {
+        				var xhr = jQuery.ajaxSettings.xhr();
+        				xhr.upload.onloadstart = function (e) {
+            				uploadProgress.style.visibility = 'inherit';
+            				uploadProgress.value = 0;
+							uploadProgress.max = e.total;
+						};
+						xhr.upload.onprogress = function (e) {
+            				uploadProgress.value = e.loaded;
+            				uploadProgress.max = e.total;
+        				};
+    				},*/
+                    success: function (result) {
+                        console.log('succes');
+                    }
+                });
+                //exporting the STL
+                var exporter = new THREE.STLExporter();
+                var stlString = exporter.parse( editor.scene, { binary: true} );
+                var blob = new Blob([stlString], {type: 'text/plain'});
+                //adding blob mesh_export to FormData API
+                var data = new FormData();
+                data.append("mesh_export", blob, n);
+                console.log(data);
+                //AJAX request of FormData
+                jQuery.ajax({
+                    url: 'http://localhost:8000/time.php',
+                    type: "POST",
+                    contentType: false,
+                    data: data,
+					processData: false,
+					//progress
+					/*xhr: function () {
+        				var xhr = $.ajaxSettings.xhr();
+        				xhr.upload.onloadstart = function (e) {
+            				uploadProgress.value = 0;
+							uploadProgress.max = e.total;
+						};
+						xhr.upload.onprogress = function (e) {
+            				uploadProgress.value = e.loaded;
+            				uploadProgress.max = e.total;
+        				};
+    				},*/
+                    success: function (result) {
+                        console.log('succes');
+						//getting the time back on the page
+                		var xmlhttp = new XMLHttpRequest();
+                		xmlhttp.onreadystatechange = function() {
+                    		if (this.readyState == 4 && this.status == 200) {
+                        		var answer = JSON.parse(this.responseText);
+								document.getElementById("output").innerHTML = "Your printing time : ".concat(answer.time);
+								document.getElementById("price").innerHTML = "Price of your print : ".concat(calculatePrice());
+								document.getElementById('upload-progress').style.visibility = 'hidden';
+                    		}
+						};
+                		xmlhttp.open("GET", "http://localhost:8000/time.php", true);
+						xmlhttp.send();
+                    }
+                });
+			});
+
+		</script>
+
+		<!-- this is the script for starting the modal -->
+		<script>
+			// Get the modal
+			var modal = document.getElementById("mycheckout");
+
+			// Get the button that opens the modal
+			var btn = document.getElementById("checkout");
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks on the button, open the modal
+			btn.onclick = function() {
+				  modal.style.display = "block";
+				  document.getElementById("amount").innerHTML = calculatePrice();
+			}
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+  				modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+  				if (event.target == modal) {
+    				modal.style.display = "none";
+  				}
+			}
+
+			//price calculation
+			function calculatePrice(){
+				var time_value = document.getElementById("output").textContent;
+				var hourly_rate = 3;
+				if (time_value.length == 8) {
+            		var price_value = parseInt(time_value[21])*(hourly_rate*10) + parseInt(time_value[22])*hourly_rate + parseInt(time_value[24])/6*hourly_rate + parseInt(time_value[25])/60*hourly_rate + parseInt(time_value[27])/360*hourly_rate + parseInt(time_value[28])/3600*hourly_rate;
+				} else {
+					var price_value = parseInt(time_value[21])*hourly_rate + parseInt(time_value[23])/6*hourly_rate + parseInt(time_value[24])/60*hourly_rate + parseInt(time_value[26])/360*hourly_rate + parseInt(time_value[27])/3600*hourly_rate;
+				}
+				return parseFloat(price_value).toFixed(2);
+        	}
+		</script>
+
+		<!--payment script starts here -->
+		<script>
+			var stripe = Stripe('pk_test_D4oSoZZwCHxT8dpTIA8AIUhB00ZTfHsmzS');
+            var elements = stripe.elements();
+            var options = {
+            // Custom styling can be passed to options when creating an Element.
+                style: {
+                    base: {
+                        // Add your base input styles here. For example:
+                        fontSize: '16px',
+                        color: '#32325d',
+                        padding: '10px 12px',
+                    },
+                }
+            }
+
+            // Create an instance of the idealBank Element.
+            var idealBank = elements.create('idealBank', options);
+
+            idealBank.on('change', function(event) {
+                var bank = event.value;
+                // Perform any additional logic here...
+            });
+
+            // Add an instance of the idealBank Element into
+            // the `ideal-bank-element` <div>.
+            idealBank.mount('#ideal-bank-element');
+
+            // Create a source or display an error when the form is submitted.
+            var form = document.getElementById('payment-form');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+				var price = document.getElementById("amount").textContent;
+
+                var sourceData = {
+                    type: 'ideal',
+                    amount: price,
+                    currency: 'eur',
+                    owner: {
+                        name: document.querySelector('input[name="name"]').value,
+                    },
+                    // Specify the URL to which the customer should be redirected
+                    // after paying.
+                    redirect: {
+                        return_url: 'https://executeprinting.com',
+                    },
+                };
+
+                // Call `stripe.createSource` with the idealBank Element and
+                // additional options.
+                stripe.createSource(idealBank, sourceData).then(function(result) {
+                    if (result.error) {
+                        // Inform the customer that there was an error.
+                        var errorElement = document.getElementById('error-message');
+                        errorElement.textContent = error.message;
+                    } else {
+                        // Redirect the customer to the authorization URL.
+                        stripeSourceHandler(result.source);
+                    }
+                });
+            });
+
+            function stripeSourceHandler(source) {
+                // Redirect the customer to the authorization URL.
+                document.location.href = source.redirect.url;
+            }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Print to order | Get Instant Quote | Execute Printing</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<script src="./node_modules/jquery/dist/jquery.js"></script>
+		<!--<link rel="manifest" href="manifest.json">-->
+		<link rel="icon" type="image/x-icon" href="whatever.ico"/>
+		<link rel="shortcut icon" href="whatever.ico" type="image/x-icon"/>
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
+		<!-- WebXR Device API (For Chrome M76+), expires 10/16/2019 -->
+		<meta http-equiv="origin-trial" content="AtWCPo0cZgy0zJDSYftemy7eZvmcwR5qy/4osFkMkLZ0ar6OYyKfbu93pjpxiOVzcWNIVxgoWoK8YtxCXeFSqgIAAABTeyJvcmlnaW4iOiJodHRwczovL3RocmVlanMub3JnOjQ0MyIsImZlYXR1cmUiOiJXZWJYUkRldmljZU03NiIsImV4cGlyeSI6MTU3MTE4Mzk5OX0=">
+	</head>
+
+    <body ontouchstart="">
+		<div class="body_container">
+			<div class="outer_flow">
+				<div class="page-title">
+					<h2>Bereken nu jouw print prijs</h2>
+				</div>
+			</div>
+			<!--this is the main menu-->
+			<div id="myinput">
+				<div class='input'>
+					<!-- <input id="clickme" type="button" value="Calculate Time Now" class="select mr-10"> -->
+					<button id="clickme" class="btn btn-outline-red mr-10">Bereken print tijd</button>
+					<select name="options" id="layer-height" class="select mr-10">
+						<option value="0.1">0.1 mm</option>
+						<option value="0.2">0.2 mm</option>
+						<option value="0.3">0.3 mm</option>
+						<option value="0.4">0.4 mm</option>
+					</select>
+					<select name="options" id='color' class="select mr-10">
+						<option value="Black">Zwart</option>
+						<option value="white">Wit</option>
+						<option value="Grey">Grijs</option>
+						<option value="Natural">Natural</option>
+						<option value="Red">Rood</option>
+						<option value="Green">Groen</option>
+						<option value="Blue">Blauw</option>
+						<option value="Orange">Oranje</option>
+						<option value="Yellow">Geel</option>
+						<option value="Purple">Paars</option>
+					</select>
+					<select name="options" id="support" class="select mr-10">
+						<option value="0">Support: Nee</option>   
+						<option value="2">Support: Ja</option>
+					</select>
+				</div>
+				<div class='input d-flex'>
+					<!--<progress id="upload-progress" class="upload-progress mr-10"></progress>-->
+					<button style="@media (min-width: 780px) { width: 100%; } @media (max-width: 780px) { width: 35% }" class="btn btn-outline-black mr-10" id='clear'>Clear canvas</button>
+					
+					<div id="upload-progress" class="loader"><img src="img/ajax-loader.gif" alt="image"/></div>
+				</div>
+				<div class='input input-text-value'>
+					<p id='output'>Jouw print tijd :</p>
+					<p id='price'>Prijs van jouw print :</p>
+				</div>
+			</div>
+		
+			<div id="wrapper">
+				<!--checkout button-->
+				<div id="checkout-outer">
+					<button class="btn btn-red btn-arrow" id="checkout">Bestel hier<span><img src="img/arrow-right.png" alt=""></span></button>
+				</div>
+				<div id="import">
+					<img src="img/import-btn.png" id="import_button" onClick="addFiles();">
+				</div>
+
+			<!--Checkout modal screen-->
+			<div id="mycheckout" class="modal">
+				<div class="modal-content">
+					<div class="modal-header">
+						<span class="close">&times;</span>
+						<h2>PP3D Printing - Checkout via Stripe</h2>
+					</div>
+					<div class="modal-body">
+						<form id="payment-form">
+							<div class="form-row">
+								<div class="amount">
+									<span>Bedrag</span>
+									<strong id ='amount'></strong>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="amount">
+									<span>Order ID</span>
+									<strong id ='order_ID'></strong>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="amount">
+									<span>Print kleur</span>
+									<strong id="print_color"></strong>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<input id="name" name="name" placeholder="Volledige naam">
+							</div>
+
+							<div class="form-row">
+								<input id="email" name='email' placeholder="Email">
+							</div>
+
+							<div class="form-row">
+								<input id="street" name='street' placeholder="Straat + huisnummer">
+							</div>
+
+							<div class="form-row">
+								<input id="zip_code" name='zip_code' placeholder="Postcode">
+							</div>
+
+							<div class="form-row">
+								<input id="city" name='city' placeholder="Stad">
+							</div>
+
+							<div class="form-row">
+								<input id="country" name='country' placeholder="Land">
+							</div>
+
+							<div class="form-row">
+								<input id= "shipping" list="shipping_methods" name="shipping" placeholder="Verzend methode">
+								<datalist id="shipping_methods">
+									<option value="PostNL €6,50"></option>
+								</datalist>
+							</div>
+							
+							<div class="form-row">
+								<label for="ideal-bank-element">
+								iDEAL Bank
+								</label>
+								<div id="ideal-bank-element">
+								<!-- A Stripe Element will be inserted here. -->
+								</div>
+							</div>
+							
+							<button class="btn btn-red">Naar betalen</button>
+							
+							<!-- Used to display form errors. -->
+							<div id="error-message" role="alert"></div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<h3>U wordt doorverwijzen om de betaling te autoriseren</h3>
+					</div>
+				</div>  
+			</div>
+
+			</div>
+		</div>
+		<div class="main_bar_mobile">
+			<p id="main_bar_text_mobile">This feature has no support for mobile yet, go back <a href="index.html">here</a></p>
+		</div>
+
+		<link rel="stylesheet" href="css/server_index.css">
+		<!--  include stripe checkout library -->
+		<script src="https://js.stripe.com/v3/"></script>
+		<!--mail server service-->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+        <script type="text/javascript">
+            (function(){
+                emailjs.init("user_8QD5JfZzn7upvHUXPRq3L");
+            })();
+        </script>
+        <!--node modules-->
+		<script src="./node_modules/three/build/three.js"></script>        
+        <script src="./node_modules/three/examples/js/controls/TransformControls.js"></script>
+		<script src="./node_modules/three/examples/js/libs/chevrotain.min.js"></script> 
+		<script src="./node_modules/three/examples/js/libs/jszip.min.js"></script>
+		<script src="./node_modules/three/examples/js/libs/inflate.min.js"></script> 
+		<script src="./node_modules/three/examples/js/loaders/OBJLoader.js"></script>
+		<script src="./node_modules/three/examples/js/renderers/Projector.js"></script>
+		<script src="./node_modules/three/examples/js/renderers/RaytracingRenderer.js"></script>
+		<script src="./node_modules/three/examples/js/renderers/SVGRenderer.js"></script>
+		<script src="./node_modules/three/examples/js/vr/WebVR.js"></script>
+        <!--js libraries used for threejs-->
+		<script src="./editor/js/libs/system.min.js"></script>
+		<script src="./editor/js/libs/esprima.js"></script>
+		<script src="./editor/js/libs/jsonlint.js"></script>
+		<script src="./editor/js/libs/glslprep.min.js"></script>
+		<script src="./editor/js/libs/signals.min.js"></script>
+		<script src="./editor/js/libs/ui.js"></script>
+		<script src="./editor/js/libs/ui.three.js"></script>
+		<script src="./editor/js/libs/html2canvas.js"></script>
+		<script src="./editor/js/libs/three.html.js"></script>
+		<script src="./editor/js/libs/app.js"></script>
+		<script src="./editor/js/EditorControls.js"></script>
+		<script src="./editor/js/Storage.js"></script>
+		<script src="./editor/js/Editor.js"></script>
+		<script src="./editor/js/Config.js"></script>
+		<script src="./editor/js/History.js"></script>
+		<script src="./editor/js/Loader.js"></script>
+		<script src="./editor/js/Sidebar.js"></script>
+		<script src="./editor/js/Sidebar.Scene.js"></script>
+		<script src="./editor/js/Sidebar.Object.js"></script>
+		<script src="./editor/js/Sidebar.Animation.js"></script>
+		<script src="./editor/js/Sidebar.History.js"></script>
+		<script src="./editor/js/Sidebar.Properties.js"></script>
+		<script src="./editor/js/Sidebar.Project.js"></script>
+		<script src="./editor/js/Sidebar.Settings.js"></script>
+		<script src="./editor/js/Sidebar.Settings.Shortcuts.js"></script>
+		<script src="./editor/js/Sidebar.Settings.Viewport.js"></script>
+		<script src="./editor/js/Strings.js"></script>
+		<script src="./editor/js/Toolbar.js"></script>
+		<script src="./editor/js/Viewport.js"></script>
+		<script src="./editor/js/Viewport.Camera.js"></script>
+		<script src="./editor/js/Viewport.Info.js"></script>
+		<script src="./editor/js/Command.js"></script>
+		<script src="./editor/js/commands/AddObjectCommand.js"></script>
+		<script src="./editor/js/commands/RemoveObjectCommand.js"></script>
+		<script src="./editor/js/commands/MoveObjectCommand.js"></script>
+		<script src="./editor/js/commands/SetPositionCommand.js"></script>
+		<script src="./editor/js/commands/SetRotationCommand.js"></script>
+		<script src="./editor/js/commands/SetScaleCommand.js"></script>
+		<script src="./editor/js/commands/SetValueCommand.js"></script>
+		<script src="./editor/js/commands/SetUuidCommand.js"></script>
+		<script src="./editor/js/commands/SetColorCommand.js"></script>
+		<script src="./editor/js/commands/MultiCmdsCommand.js"></script>
+        <script src="./editor/js/commands/SetSceneCommand.js"></script>
+        <!--these are the node_modules and STLloader-->
+		<script src="./node_modules/three/examples/js/loaders/STLLoader.js"></script>
+		<script src="./node_modules/three-stlexporter/STLExporter.js"></script>
+		<script src="./node_modules/three/examples/js/exporters/OBJExporter.js"></script>
+		
+		<!-- script for editing and time calculation starts here -->
+		<script>
+			window.URL = window.URL || window.webkitURL;
+			window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
+
+			Number.prototype.format = function (){
+				return this.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+			};
+
+			//initiating the whole editor
+
+			var editor = new Editor();
+
+			var container = new UI.Panel();
+	        container.setId( 'editor_container' );
+	        container.setPosition( 'static' );
+
+			var viewport = new Viewport( editor );
+			container.add(viewport);
+			var toolbar = new Toolbar( editor );
+			container.add(toolbar);
+			var sidebar = new Sidebar( editor );
+			container.add(sidebar);
+			document.body.appendChild( container.dom );			
+
+			editor.storage.init( function () {
+
+				editor.storage.get( function ( state ) {
+
+					if ( isLoadingFromHash ) return;
+
+					if ( state !== undefined ) {
+
+						editor.fromJSON( state );
+
+					}
+
+					var selected = editor.config.getKey( 'selected' );
+
+					if ( selected !== undefined ) {
+
+						editor.selectByUuid( selected );
+
+					}
+
+				} );
+
+				//timeout functions
+
+				var timeout;
+
+				function saveState( scene ) {
+
+					if ( editor.config.getKey( 'autosave' ) === false ) {
+
+						return;
+
+					}
+
+					clearTimeout( timeout );
+
+					timeout = setTimeout( function () {
+
+						editor.signals.savingStarted.dispatch();
+
+						timeout = setTimeout( function () {
+
+							editor.storage.set( editor.toJSON() );
+
+							editor.signals.savingFinished.dispatch();
+
+						}, 100 );
+
+					}, 1000 );
+				};
+
+				var signals = editor.signals;
+
+				signals.geometryChanged.add( saveState );
+				signals.objectAdded.add( saveState );
+				signals.objectChanged.add( saveState );
+				signals.objectRemoved.add( saveState );
+				signals.materialChanged.add( saveState );
+				signals.sceneBackgroundChanged.add( saveState );
+				signals.sceneFogChanged.add( saveState );
+				signals.sceneGraphChanged.add( saveState );
+				signals.scriptChanged.add( saveState );
+				signals.historyChanged.add( saveState );
+
+			} );
+
+			//clearing the canvas
+			editor.clear();
+
+			//lightening
+			editor.scene.add( new THREE.HemisphereLight( 0x443333, 0x111122 ) );
+            addShadowedLight( 1, 1, 1, 0xffffff, 1.35 );
+			addShadowedLight( 0.5, 1, - 1, 0xffaa00, 1 );
+			function addShadowedLight( x, y, z, color, intensity ) {
+                var directionalLight = new THREE.DirectionalLight( color, intensity );
+                directionalLight.position.set( x, y, z );
+                editor.scene.add( directionalLight );
+                directionalLight.castShadow = true;
+                var d = 1;
+                directionalLight.shadow.camera.left = - d;
+                directionalLight.shadow.camera.right = d;
+                directionalLight.shadow.camera.top = d;
+                directionalLight.shadow.camera.bottom = - d;
+                directionalLight.shadow.camera.near = 1;
+                directionalLight.shadow.camera.far = 4;
+                directionalLight.shadow.bias = - 0.002;
+            }
+
+			//functionalities
+
+			document.addEventListener( 'dragover', function ( event ) {
+
+				event.preventDefault();
+				event.dataTransfer.dropEffect = 'copy';
+
+			}, false );
+
+			document.addEventListener( 'drop', function ( event ) {
+
+				event.preventDefault();
+
+				editor.loader.loadFiles( event.dataTransfer.files );
+
+			}, false );
+
+			function onWindowResize( event ) {
+
+				editor.signals.windowResize.dispatch();
+
+			}
+
+			window.addEventListener( 'resize', onWindowResize, false );
+
+			onWindowResize();
+
+			//no clue what this is
+
+			var isLoadingFromHash = false;
+			var hash = window.location.hash;
+
+			if ( hash.substr( 1, 5 ) === 'file=' ) {
+
+				var file = hash.substr( 6 );
+
+				if ( confirm( 'Any unsaved data will be lost. Are you sure?' ) ) {
+
+					var loader = new THREE.FileLoader();
+					loader.crossOrigin = '';
+					loader.load( file, function ( text ) {
+
+						editor.clear();
+						editor.fromJSON( JSON.parse( text ) );
+
+					} );
+
+					isLoadingFromHash = true;
+
+				}
+
+			}
+
+			// ServiceWorker
+			if ( 'serviceWorker' in navigator ) {
+				try {
+					navigator.serviceWorker.register( 'sw.js' );
+				} catch ( error ) {
+				}
+			}
+
+			//defining price
+			var price_temp;
+			var n;
+			var support;
+
+			//positioning
+			
+
+            //clear all function
+			$('#clear').click(function () {
+				editor.clear();
+				editor.scene.add( new THREE.HemisphereLight( 0x443333, 0x111122 ) );
+                addShadowedLight( 1, 1, 1, 0xffffff, 1.35 );
+			    addShadowedLight( 0.5, 1, - 1, 0xffaa00, 1 );
+			}); 
+
+			//setting upload bar invisible
+			document.getElementById('upload-progress').style.display = 'none';
+
+			//uploading files when the import button is pressed
+			var form = document.createElement( 'form' );
+	        form.style.display = 'none';
+	        document.body.appendChild( form );
+
+	        var fileInput = document.createElement( 'input' );
+	        fileInput.multiple = true;
+	        fileInput.type = 'file';
+	        fileInput.addEventListener( 'change', function ( event ) {
+
+		        editor.loader.loadFiles( fileInput.files );
+		        form.reset();
+
+	        } );
+			form.appendChild( fileInput );
+			
+			function addFiles() {
+				fileInput.click();
+			};
+
+			//calculating time function
+			$('#clickme').click(function () {
+				//deleting previous time
+				document.getElementById("output").innerHTML = "Jouw print tijd : ";
+				document.getElementById("price").innerHTML = "Prijs van jouw print : "				
+				//setting upload bar
+				document.getElementById('upload-progress').style.display = 'block';
+                //Selecting the printcolor, order ID and layer-height, than adding to FormData API
+				var printcolor = $('#color option:selected').val();
+				console.log(printcolor);
+				var support = $('#support option:selected').val();
+				var d = new Date();
+				var e = d.getTime();
+				var n = parseInt(support.concat(e.toString()));
+                var your_selected_value = $('#layer-height option:selected').val();
+				console.log(your_selected_value);
+                //AJAX request of FormData
+                jQuery.ajax({
+                    url: 'layer-height.php',
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({selected: your_selected_value,
+					time: n}),
+					processData: false,
+                    success: function (result) {
+                        console.log('succes');
+                    }
+                });
+                //exporting the STL
+                var exporter = new THREE.STLExporter();
+                var stlString = exporter.parse( editor.scene, { binary: true} );
+                var blob = new Blob([stlString], {type: 'text/plain'});
+                //adding blob mesh_export to FormData API
+                var data = new FormData();
+                data.append("mesh_export", blob, n.toString());
+                console.log(blob);
+                //AJAX request of FormData
+                jQuery.ajax({
+                    url: 'time.php',
+                    type: "POST",
+                    contentType: false,
+                    data: data,
+					processData: false,
+                    success: function (result) {
+						console.log(result);
+						//getting the time back on the page
+                		var xmlhttp = new XMLHttpRequest();
+                		xmlhttp.onreadystatechange = function() {
+                    		if (this.readyState == 4 && this.status == 200) {
+                        		var answer = JSON.parse(this.responseText);
+								document.getElementById("output").innerHTML = "Your printing time : ".concat(answer.time);
+								document.getElementById("price").innerHTML = "Price of your print : ".concat(calculatePrice(answer.time));
+								document.getElementById("amount").innerHTML = calculatePrice(answer.time);
+								document.getElementById("print_color").innerHTML = printcolor;
+								document.getElementById("order_ID").innerHTML = n;
+								document.getElementById('upload-progress').style.visibility = 'hidden';
+                    		} else {
+								document.getElementById("output").innerHTML = "Failed to calculate printing time, use another file or try again later";
+								document.getElementById('upload-progress').style.visibility = 'hidden';
+							}
+						};
+                		xmlhttp.open("GET", "time.php", true);
+						xmlhttp.send();
+					}
+			    });
+			});
+		    //this is the script for starting the modal
+			var modal = document.getElementById("mycheckout");
+			var btn = document.getElementById("checkout");
+			var span = document.getElementsByClassName("close")[0];
+			// When the user clicks on the button, open the modal
+			btn.onclick = function() {
+				  modal.style.display = "block";
+			}
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+  				modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+  				if (event.target == modal) {
+    				modal.style.display = "none";
+  				}
+			}
+
+			//price calculation
+			function calculatePrice( x ){
+				var time_value = x.replace(/\s+/, "");
+				var hourly_rate = 4;
+				if (time_value.length == 8) {
+            		var price_value = parseInt(time_value[0])*(hourly_rate*10) + parseInt(time_value[1])*hourly_rate + parseInt(time_value[3])/6*hourly_rate + parseInt(time_value[4])/60*hourly_rate + parseInt(time_value[6])/360*hourly_rate + parseInt(time_value[7])/3600*hourly_rate;
+				} else {
+					var price_value = parseInt(time_value[0])*hourly_rate + parseInt(time_value[2])/6*hourly_rate + parseInt(time_value[3])/60*hourly_rate + parseInt(time_value[5])/360*hourly_rate + parseInt(time_value[6])/3600*hourly_rate;
+				}
+				return parseFloat(price_value).toFixed(2);
+        	}
+		</script>
+
+		<!--payment script starts here -->
+		<script>
+			/*
+			var price = Math.round((parseFloat(document.getElementById("amount").textContent) + parseFloat("6.50"))*100);
+			var stripe = require('stripe')('sk_test_TO1fG7dLOCfuCoFMQET84dbv00zfVKkshd');
+			stripe.paymentIntents.create (
+				{
+                    amount: price,
+                    currency: 'eur',
+                    payment_method_types: ['ideal'],
+                },
+                function(err, paymentIntent) {
+                    // asynchronously called
+                }
+			);
+            */
+			var price_shipping;
+			var stripe = Stripe('pk_test_VJFCfanSy056BcM5UUlyljBc00qPT8XSkm');
+            var elements = stripe.elements();
+            var options = {
+            // Custom styling can be passed to options when creating an Element.
+                style: {
+                    base: {
+                        // Add your base input styles here. For example:
+                        fontSize: '16px',
+                        color: '#32325d',
+                        padding: '10px 12px',
+                    },
+                }
+            }
+
+            // Create an instance of the idealBank Element.
+            var idealBank = elements.create('idealBank', options);
+
+            idealBank.on('change', function(event) {
+                var bank = event.value;
+                // Perform any additional logic here...
+            });
+
+            // Add an instance of the idealBank Element into
+            // the `ideal-bank-element` <div>.
+            idealBank.mount('#ideal-bank-element');
+
+            // Create a source or display an error when the form is submitted.
+            var form = document.getElementById('payment-form');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+				if ($('#shipping').val() == "PostNL €6,50") {
+					var price_shipping = "6.50";
+				} else {
+					var price_shipping = "0.00";
+				}
+
+				var price = Math.round((parseFloat(document.getElementById("amount").textContent) + parseFloat(price_shipping))*100);
+
+				//sending a conform email to Execute mail(later on also customers mail)
+				var message_order = "Order_ID: ".concat(document.getElementById("order_ID").textContent);
+				var message_shipping = "	Shipping method: ".concat($("#shipping").val());
+				var message_color = "	color: ".concat(document.getElementById("print_color").textContent);
+				var message_amount = "	amount: ".concat(price/100);
+				var message_name = "	name: ".concat($("#name").val());
+				var message_email = "	email: ".concat($("#email").val());
+				var message_street = "	street: ".concat($("#street").val());
+				var message_zipcode = "	zipcode: ".concat($("#zip_code").val());
+				var message_city = "	city: ".concat($("#city").val());
+				var message_country = "		country: ".concat($("#country").val());
+				var message_body = message_order + message_shipping + message_color + message_amount + message_name + message_email + message_street + message_zipcode + message_city + message_country;
+
+				var templateParams = {
+					to_name: 'Bryan & Ruard',
+					message_html: message_body
+				};
+				emailjs.send('gmail', 'template_1', templateParams);
+
+				var templateParams2 = {
+					klant_naam: message_name,
+					bedrag: message_amount,
+					klant_email: message_email
+				};
+				emailjs.send('gmail', 'email_template_customer', templateParams2);
+
+                var sourceData = {
+                    type: 'ideal',
+                    amount: price,
+                    currency: 'eur',
+                    owner: {
+                        name: document.querySelector('input[name="name"]').value,
+                    },
+                    // Specify the URL to which the customer should be redirected
+                    // after paying.
+                    redirect: {
+                        return_url: 'https://pp3dprinting.nl/landing.html',
+                    },
+				};
+
+                // Call `stripe.createSource` with the idealBank Element and
+                // additional options.
+                stripe.createSource(idealBank, sourceData).then(function(result) {
+                    if (result.error) {
+                        // Inform the customer that there was an error.
+                        var errorElement = document.getElementById('error-message');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        // Redirect the customer to the authorization URL.
+                        stripeSourceHandler(result.source)
+						
+                    }
+				});
+				
+				if (source.chargeable == true) {
+					console.log('true');
+					
+				}
+            });
+
+            function stripeSourceHandler(source) {
+                // Redirect the customer to the authorization URL.
+                document.location.href = source.redirect.url;
+            }
+		</script>
+	    </div>
+    </body>
+</html>
